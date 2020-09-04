@@ -1,25 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { ConnectedRouter } from 'connected-react-router';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { AlbumScene } from './albums/scene/AlbumScene';
+import { history } from './store/rootStore';
+import { appTheme } from './layout/theme/appTheme';
+import { ThemeProvider } from 'styled-components';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={appTheme}>
+      <Router>
+        <ConnectedRouter history={history}>
+          <Switch>
+            <Route exact path="/"><AlbumScene /></Route>
+            <Route render={() => (<div>TEST</div>)} />
+          </Switch>
+        </ConnectedRouter >
+      </Router>
+    </ThemeProvider>
   );
 }
 

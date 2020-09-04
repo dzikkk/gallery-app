@@ -1,0 +1,23 @@
+{
+    "extends": [
+      "tslint:latest",
+      "tslint-react",
+      "tslint-config-prettier"
+    ],
+    "rules": {
+      "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"],
+      "prettier": true,
+      "interface-name": false,
+      "jsx-curly-spacing": false,
+      "jsx-equals-spacing": false,
+      "jsx-key": true,
+      "jsx-no-lambda": true,
+      "jsx-self-close": true,
+      "jsx-space-before-trailing-slash": true,
+      "jsx-wrap-multiline": false,
+      "newline-before-return": true,
+      "no-parameter-reassignment": true,
+      "no-shadowed-variable": true,
+      "object-literal-shorthand": true
+    }
+}
