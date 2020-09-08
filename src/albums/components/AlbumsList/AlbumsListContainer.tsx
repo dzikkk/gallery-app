@@ -1,11 +1,13 @@
-import { FunctionComponent, useEffect } from 'react';
+import { default as React, FunctionComponent, useEffect } from 'react';
 import { AlbumQueryActions } from '../../actions/AlbumQueryActions';
-import { selectIsAlbumsEmpty, selectIsLoading } from '../../selectors/albumSelectors';
+import { selectIsAlbumsEmpty, selectAlbumsList, selectIsLoading } from '../../selectors/albumSelectors';
+import { AlbumsList } from './AlbumsList';
 import { useSelector, useDispatch } from 'react-redux';
 
 
 const useSelectors = () => ({
   isAlbumsEmpty: useSelector(selectIsAlbumsEmpty),
+  albumsList: useSelector(selectAlbumsList),
   isLoading: useSelector(selectIsLoading),
 });
 
@@ -17,10 +19,10 @@ const useActions = () => {
   }
 };
 
-export const AlbumDataFetch: FunctionComponent = () => {
-  const { isAlbumsEmpty, isLoading } = useSelectors();
+export const AlbumsListContainer: FunctionComponent = () => {
+  const { isAlbumsEmpty, albumsList, isLoading } = useSelectors();
   const { fetchAlbumsList } = useActions();
- 
+
   useEffect(() => {
     if (isAlbumsEmpty && !isLoading) {
       fetchAlbumsList();
@@ -28,5 +30,11 @@ export const AlbumDataFetch: FunctionComponent = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAlbumsEmpty, isLoading]);
 
-  return null;
+  return (
+    <AlbumsList
+      isLoading={isLoading}
+      albumsList={albumsList}
+      isAlbumsEmpty={isAlbumsEmpty}
+    />
+  );
 }

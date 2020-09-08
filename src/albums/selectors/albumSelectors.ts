@@ -6,4 +6,4 @@ export const selectAlbumState = (state: RootState) => state.album;
 
 export const selectAlbumsList = createSelector([selectAlbumState], albumState => R.pathOr([], ['albumsList'], albumState));
 export const selectIsAlbumsEmpty = createSelector([selectAlbumsList], albums => albums.length === 0);
-export const selectIsLoading = createSelector([selectAlbumState], albumsState => albumsState.isLoading);
+export const selectIsLoading = createSelector([selectAlbumState], albumState => R.pathOr(false, ['isLoading'], albumState));

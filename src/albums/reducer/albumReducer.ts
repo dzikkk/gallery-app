@@ -1,21 +1,22 @@
 import { getType } from "typesafe-actions";
-import { AlbumQueryAction } from "../actions/AlbumQueryActions";
+import { AlbumQueryActions } from "../actions/AlbumQueryActions";
 import { albumModel, AlbumState } from "../state/albumState";
+import * as R from 'ramda';
 
 export function albumReducer(
   state: AlbumState = albumModel.build(),
-  action: AlbumQueryAction,
+  action: AlbumQueryActions,
 ): AlbumState {
   switch(action.type) {
-    case getType(AlbumQueryAction.request):
+    case getType(AlbumQueryActions.request):
       return {
         ...state,
         isLoading: true,
       }
-    case getType(AlbumQueryAction.success):
+    case getType(AlbumQueryActions.success):
       return {
         isLoading: false,
-        albumsList: [ ...state.albumsList, ...action.payload ]
+        albumsList: R.sortBy(R.prop('userId'), [ ...state.albumsList, ...action.payload ]),
       }
   }
 

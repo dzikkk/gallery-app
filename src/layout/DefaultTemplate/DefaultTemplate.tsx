@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { AppTheme } from '../theme/appTheme';
 
 const TemplateWrapper = styled('div')<AppTheme>(({theme}) => ({
-  backgroundColor: theme.palette.primary.main,
+  height: '100vh',
 }));
 
 type DefaultTeamplerProps = {

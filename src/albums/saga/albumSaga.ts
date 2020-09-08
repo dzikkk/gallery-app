@@ -1,21 +1,21 @@
-import Axios from 'axios';
 import { put, takeLatest, call } from 'redux-saga/effects';
-import { AlbumQueryAction } from '../actions/AlbumQueryActions';
+import { AlbumQueryActions } from '../actions/AlbumQueryActions';
 import { albumsQuery, AlbumsQueryResponse } from '../api/albumsQuery';
+import { UsersProfileQueryActions } from '../../usersProfile/actions/UsersProfileQueryActions';
 
 function* fetchAlbumsSaga() {
-  const succes = AlbumQueryAction.success;
-  const failed = AlbumQueryAction.failure;
+  const succes = AlbumQueryActions.success;
+  const failed = AlbumQueryActions.failure;
 
   try {
     const data: AlbumsQueryResponse = yield call(albumsQuery);
     yield put(succes(data));
+    yield put(UsersProfileQueryActions.request({}));
   } catch (error) {
     yield put(failed(error));
   }
-
 }
 
 export function* albumSaga() {
-  yield takeLatest(AlbumQueryAction.request, fetchAlbumsSaga)
+  yield takeLatest(AlbumQueryActions.request, fetchAlbumsSaga)
 }
