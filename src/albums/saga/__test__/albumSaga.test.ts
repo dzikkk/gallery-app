@@ -1,12 +1,9 @@
 import { expectSaga } from 'redux-saga-test-plan';
 import { throwError } from 'redux-saga-test-plan/providers';
-
+import { call } from 'redux-saga/effects';
 import { albumSaga } from '../albumSaga';
-import { getReq } from '../../../core/fetchHelpers/fetchHelpers';
 import { AlbumQueryActions } from '../../actions/AlbumQueryActions';
-import { select, put, call } from 'redux-saga/effects';
 import { albumsQuery } from '../../api/albumsQuery';
-import Axios from 'axios';
 import { UsersProfileQueryActions } from '../../../usersProfile/actions/UsersProfileQueryActions';
 
 describe('albumSaga', () => {
