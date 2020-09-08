@@ -40,10 +40,10 @@ export const GalleryList: FunctionComponent<GalleryListProps> = ({
   }
 
   return (
-    <>
+    <GalleryListWrapper>
       <UserBarContainer userId={userId} />
-      <GalleryListWrapper>{createGalleryList(galleryList)}</GalleryListWrapper>
-    </>
+      {createGalleryList(galleryList)}
+    </GalleryListWrapper>
   );
 };
   
